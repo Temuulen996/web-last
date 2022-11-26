@@ -1,4 +1,5 @@
-import { deleteCookie } from "cookies-next";
+import axios from "axios";
+import { deleteCookie, getCookie } from "cookies-next";
 import { Navbar, Dropdown, Avatar } from "flowbite-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -6,20 +7,33 @@ import { useRouter } from "next/router";
 const SideNav = () => {
   const router = useRouter();
   const signOut = () => {
+    deleteSession();
     deleteCookie("token");
     deleteCookie("userId");
     router.replace("/login");
+  };
+  const deleteSession = async () => {
+    const token = getCookie("token");
+    console.log(token);
+    axios
+      .delete(`http://localhost:3000/api/get-session/${token}`)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <Navbar fluid={true} rounded={true}>
       <Navbar.Brand href="https://flowbite.com/">
         <img
-          src="https://flowbite.com/docs/images/logo.svg"
-          className="mr-3 h-6 sm:h-9"
+          src="https://static.vecteezy.com/system/resources/previews/000/609/739/non_2x/finance-logo-and-symbols-vector-concept-illustration.jpg"
+          className="mr-3 w-16 "
           alt="Flowbite Logo"
         />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          Flowbite
+          Finance
         </span>
       </Navbar.Brand>
       <div className="flex md:order-2">
@@ -29,7 +43,7 @@ const SideNav = () => {
           label={
             <Avatar
               alt="User settings"
-              img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+              img="https://www.pngitem.com/pimgs/m/575-5759580_anonymous-avatar-image-png-transparent-png.png"
               rounded={true}
             />
           }

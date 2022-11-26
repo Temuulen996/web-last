@@ -5,6 +5,8 @@ import Image from "next/image";
 import Router, { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Layout from "../components/layout/layout";
+import WithListItem from "../components/withdraw/with-list-item/with-list-item";
+import WithModal from "../components/withdraw/with-modal/with-modal";
 import styles from "../styles/Home.module.css";
 export const getServerSideProps = async (req, res) => {
   let withdraws;
@@ -13,10 +15,8 @@ export const getServerSideProps = async (req, res) => {
   if (userId == undefined) {
     withdraws = [];
   } else {
-    withdraws = await axios.get(
-      `http://localhost:3000/api/with-list/${userId}`
-    );
-    withdraws = withdraws.data;
+    withdraws = await fetch(`http://localhost:3000/api/with-list/${userId}`);
+    withdraws = await withdraws.json();
   }
 
   console.log(withdraws);
@@ -40,15 +40,10 @@ export default function Home({ token, userId, withdraws }) {
     }
   }, []);
   const changeList = async () => {
-    axios
-      .get(`http://localhost:3000/api/with-list/${userId}`)
-      .then((res) => {
-        console.log(res);
-        setList(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    let res = await fetch(`http://localhost:3000/api/with-list/${userId}`);
+    res = res.json();
+    console.log(res);
+    router.replace(router.asPath);
   };
   const addWithDraw = async () => {
     const userId = getCookie("userId");
@@ -66,7 +61,8 @@ export default function Home({ token, userId, withdraws }) {
       .catch((err) => {
         console.log(err);
       });
-    changeList();
+    router.reload();
+    // changeList();
   };
   const changeValue = (value) => {
     setWithdraw({ ...withdraw, value: value });
@@ -76,36 +72,41 @@ export default function Home({ token, userId, withdraws }) {
   };
   return token ? (
     <Layout>
-      <div className="">
-        <input
-          onChange={(e) => {
-            changeValue(e.target.value);
-          }}
-          placeholder="value"
-          type={"number"}
-        />
-        <input
-          onChange={(e) => {
-            changeDescription(e.target.value);
-          }}
-          type={"text"}
-          placeholder="description"
-        />
-        <input
-          onClick={() => {
-            addWithDraw();
-          }}
-          className="cursor-pointer"
-          type={"button"}
-          value="Add to favorites"
-        />
-      </div>
-      <div>
-        {list.map((el, i) => {
-          if (el.type == "WITHDRAW") {
-            return <div key={i}>{el.description}</div>;
-          }
-        })}
+      <WithModal
+        hidden={false}
+        changeValue={changeValue}
+        changeDescription={changeDescription}
+        addWithDraw={addWithDraw}
+      />
+      <div className="w-2/3 ">
+        <div className=" flex justify-center">
+          <button
+            type="button"
+            className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModalCenter"
+          >
+            орлого нэмэх
+          </button>
+        </div>
+        <div>
+          {list.length != 0 ? (
+            list.map((el, i) => {
+              if (el.type == "WITHDRAW") {
+                return <WithListItem el={el} key={i} />;
+              }
+            })
+          ) : (
+            <div></div>
+          )}
+          {list.length === 0 ? (
+            <div className=" mt-36 text-3xl text-center">
+              танд одоогоор орлого байхгүй байна.
+            </div>
+          ) : (
+            <div></div>
+          )}
+        </div>
       </div>
     </Layout>
   ) : (

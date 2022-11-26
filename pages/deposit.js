@@ -7,19 +7,19 @@ import { useEffect } from "react";
 import styles from "../styles/Home.module.css";
 import { useState } from "react";
 import axios from "axios";
-import DepoForm from "../components/depo-form/depo-form";
+import DepoForm from "../components/deposit/depo-form/depo-form";
+import DepoListItem from "../components/deposit/depo-list-item/depo-list-item";
+import DepoModal from "../components/deposit/depo-modal/depo-modal";
 export const getServerSideProps = async (req, res) => {
   const token = getCookie("token", req, res);
   const userId = getCookie("userId", req, res);
-  let deposities = await axios.get(
-    `http://localhost:3000/api/depo-list/${userId}`
-  );
-  deposities = deposities.data;
+  let deposities = await fetch(`http://localhost:3000/api/depo-list/${userId}`);
+  deposities = await deposities.json();
   return {
     props: {
       token: token ? token : false,
       userId: userId ? userId : false,
-      deposities: deposities != [] ? deposities : [],
+      deposities: deposities == [] ? [] : deposities,
     },
   };
 };
@@ -39,15 +39,11 @@ const Deposit = ({ token, userId, deposities }) => {
     }
   }, []);
   const changeList = async () => {
-    axios
-      .get(`http://localhost:3000/api/depo-list/${userId}`)
-      .then((res) => {
-        console.log(res);
-        setList(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    let res;
+    res = await fetch(`http://localhost:3000/api/depo-list/${userId}`);
+    res = await res.json();
+    console.log(res);
+    setList(res);
   };
   const addDeposit = async () => {
     const userId = getCookie("userId");
@@ -65,7 +61,7 @@ const Deposit = ({ token, userId, deposities }) => {
       .catch((err) => {
         console.log(err);
       });
-    changeList();
+    await changeList();
   };
   const changeValue = (value) => {
     setDeposit({ ...deposit, value: value });
@@ -78,26 +74,37 @@ const Deposit = ({ token, userId, deposities }) => {
   };
   return token ? (
     <Layout>
-      <div>
-        <div className="">
-          <DepoForm
-            changeCategory={changeCategory}
-            changeDescription={changeDescription}
-            changeValue={changeValue}
-            addDeposit={addDeposit}
-            deposit={deposit}
-          />
+      <DepoModal
+        changeCategory={changeCategory}
+        changeDescription={changeDescription}
+        changeValue={changeValue}
+        addDeposit={addDeposit}
+        deposit={deposit}
+      />
+      <div className="w-2/3">
+        <div className=" flex justify-center">
+          <button
+            type="button"
+            className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModalCenter"
+          >
+            зарлага нэмэх
+          </button>
         </div>
         <div>
-          {list.map((el, i) => (
-            <div key={i} className="flex justify-between">
-              <p>{`${i + 1})`}</p>
-              <div>{el.value}</div>
-              <div>{el.description}</div>
-              <div>{el.category}</div>
-              <div>{el.description}</div>
+          {list.length != 0 ? (
+            list.map((el, i) => <DepoListItem el={el} key={i} />)
+          ) : (
+            <div></div>
+          )}
+          {list.length === 0 ? (
+            <div className=" mt-36 text-3xl text-center">
+              танд одоогоор зарлага байхгүй байна.
             </div>
-          ))}
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
     </Layout>

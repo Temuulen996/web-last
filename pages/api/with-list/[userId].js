@@ -3,12 +3,21 @@ import dbConnect from "../../../utils/dbConnection";
 
 export default async function handler(req, res) {
   const { method } = req;
-  const userId = req.query.userId;
+  const Id = req.query.userId;
+  console.log(method);
   dbConnect();
   if (method == "GET") {
     try {
-      const users = await List.find({ _user: userId, type: "WITHDRAW" });
-      res.status(200).json(users);
+      const lists = await List.find({ _user: Id, type: "WITHDRAW" });
+      res.status(200).json(lists);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }
+  if (method == "DELETE") {
+    try {
+      const lists = await List.findByIdAndDelete({ _id: Id });
+      res.status(200).json(lists);
     } catch (err) {
       res.status(500).json(err);
     }
