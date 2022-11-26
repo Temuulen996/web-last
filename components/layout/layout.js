@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
       <nav>
         <SideNav />
       </nav>
-      <main>{children}</main>
+      <main className="w-full flex justify-center ">{children}</main>
       <footer></footer>
     </div>
   );

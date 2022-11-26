@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-
+import { UserStore } from "../context/user-context";
 import { useEffect } from "react";
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -9,7 +9,11 @@ function MyApp({ Component, pageProps }) {
     };
     use();
   }, []);
-  return <Component {...pageProps} />;
+  return (
+    <UserStore>
+      <Component {...pageProps} />
+    </UserStore>
+  );
 }
 
 export default MyApp;
