@@ -101,7 +101,12 @@ export default function Home({ token, userId, withdraws }) {
   };
   return token ? (
     <Layout>
-      <WithChartModal hidden={hidden} setHidden={setHidden} userId={userId} />
+      <WithChartModal
+        hidden={hidden}
+        setHidden={setHidden}
+        userId={userId}
+        list={list}
+      />
       <WithModal
         changeCategory={changeCategory}
         changeDate={changeDate}
@@ -131,7 +136,7 @@ export default function Home({ token, userId, withdraws }) {
           </button>
         </div>
 
-        <div>
+        <div className="h-[700px] overflow-scroll overflow-x-hidden">
           {list.length != 0 ? (
             list.map((el, i) => {
               if (el.type == "WITHDRAW") {

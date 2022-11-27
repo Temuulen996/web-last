@@ -16,7 +16,7 @@ const WithListItem = ({ el }) => {
     router.reload();
   };
   return (
-    <div style={{ marginTop: "5px" }} classname=" w-full my-4">
+    <div style={{ marginTop: "5px" }} className=" w-full my-4">
       <div className="flex justify-center w-full">
         <div className="flex flex-col md:flex-row  rounded-lg bg-white shadow-lg w-full">
           <div className="p-6 flex  justify-center w-full">

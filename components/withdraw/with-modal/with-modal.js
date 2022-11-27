@@ -105,6 +105,7 @@ const WithModal = ({
                   type={"date"}
                 />
                 <select
+                  defaultValue=""
                   onChange={(e) => {
                     changeCategory(e.target.value);
                   }}
@@ -125,7 +126,9 @@ const WithModal = ({
         m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 >
-                  <option selected> </option>
+                  <option selected value="">
+                    {" "}
+                  </option>
                   <option value="цалин">цалин</option>
                   <option value="нэмэлт">нэмэлт орлого</option>
                   <option value="бусад">бусад</option>

@@ -6,7 +6,9 @@ const Layout = ({ children }) => {
       <nav>
         <SideNav />
       </nav>
-      <main className="px-auto flex justify-center">{children}</main>
+      <main className="px-auto flex justify-center items-center flex-col md:flex-row ">
+        {children}
+      </main>
       <footer></footer>
     </div>
   );

@@ -1,8 +1,8 @@
 const Spinner = () => {
   return (
-    <div class="flex justify-center items-center">
+    <div class="flex justify-center items-center mt-36">
       <div
-        class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full"
+        class="spinner-border animate-spin inline-block w-16 h-16 border-4 rounded-full"
         role="status"
       >
         <span class="visually-hidden">Loading...</span>

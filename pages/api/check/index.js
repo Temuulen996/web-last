@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   const { method } = req;
   const body = req.body;
   console.log(body);
-  dbConnect();
+  await dbConnect();
   if (method == "POST") {
     try {
       const user = await User.find({

@@ -1,7 +1,7 @@
 import LineChart from "../../charts/line-chart/line-chart";
 import PieChart from "../../charts/PieChart/pie-chart";
 
-const WithChartModal = ({ hidden, setHidden, userId, list }) => {
+const DepoChartModal = ({ hidden, setHidden, userId, list }) => {
   return (
     <div
       onClick={() => {
