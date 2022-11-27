@@ -25,14 +25,13 @@ export const getServerSideProps = async (req, res) => {
 };
 const Deposit = ({ token, userId, deposities }) => {
   const [list, setList] = useState(deposities);
-  console.log(list);
   const router = useRouter();
   const [deposit, setDeposit] = useState({
     value: 0,
-    description: "",
+    description: "n/a",
     category: "",
+    date: "",
   });
-  console.log(token);
   useEffect(() => {
     if (token === false) {
       router.replace("/login");
@@ -47,12 +46,17 @@ const Deposit = ({ token, userId, deposities }) => {
   };
   const addDeposit = async () => {
     const userId = getCookie("userId");
+    if (deposit.value === 0 || deposit.category === "" || deposit.date === "") {
+      alert("zarlaga nemehed aldaa garlaa");
+      return;
+    }
     axios
       .post("http://localhost:3000/api/depo-lists", {
         value: deposit.value,
         description: deposit.description,
         category: deposit.category,
         type: "DEPOSIT",
+        inserted: deposit.date,
         _user: userId,
       })
       .then((res) => {
@@ -71,10 +75,16 @@ const Deposit = ({ token, userId, deposities }) => {
   };
   const changeCategory = (category) => {
     setDeposit({ ...deposit, category: category });
+    console.log(deposit.category);
+  };
+  const changeDate = (date) => {
+    setDeposit({ ...deposit, date: date });
+    console.log(deposit.date);
   };
   return token ? (
     <Layout>
       <DepoModal
+        changeDate={changeDate}
         changeCategory={changeCategory}
         changeDescription={changeDescription}
         changeValue={changeValue}

@@ -5,6 +5,7 @@ const ListSchema = new mongoose.Schema(
     type: { type: String, required: true, maxLength: 30 },
     description: { type: String, required: true, maxLength: 100 },
     category: { type: String, required: true, maxLength: 30 },
+    inserted: { type: Date, required: true },
     _user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },
   { timestamps: true }

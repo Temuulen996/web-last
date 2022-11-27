@@ -1,4 +1,11 @@
-const WithModal = ({ hidden, addWithDraw, changeValue, changeDescription }) => {
+const WithModal = ({
+  hidden,
+  addWithDraw,
+  changeValue,
+  changeDescription,
+  changeCategory,
+  changeDate,
+}) => {
   return (
     <div>
       <div
@@ -26,11 +33,36 @@ const WithModal = ({ hidden, addWithDraw, changeValue, changeDescription }) => {
               />
             </div>
             <div>
-              <input
-                className="form-control
+              <div className="flex justify-center">
+                <input
+                  className="form-control
         block
-        w-full
+        w-1/2
         px-3
+        py-1.5
+        text-base
+        my-1 mx-1
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  onChange={(e) => {
+                    changeValue(e.target.value);
+                  }}
+                  placeholder="value"
+                  type={"number"}
+                />
+                <input
+                  className="form-control
+        block
+        w-1/2
+        px-3 
+        my-1 mx-1
         py-1.5
         text-base
         font-normal
@@ -42,17 +74,23 @@ const WithModal = ({ hidden, addWithDraw, changeValue, changeDescription }) => {
         ease-in-out
         m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                onChange={(e) => {
-                  changeValue(e.target.value);
-                }}
-                placeholder="value"
-                type={"number"}
-              />
-              <input
-                className="form-control
+                  onChange={(e) => {
+                    changeDescription(e.target.value);
+                  }}
+                  type={"text"}
+                  placeholder="description"
+                />
+              </div>
+              <div className="flex justify-center">
+                <input
+                  onChange={(e) => {
+                    changeDate(e.target.value);
+                  }}
+                  className="form-control
         block
-        w-full
-        px-3
+        w-1/2
+        px-3 
+        my-1 mx-1
         py-1.5
         text-base
         font-normal
@@ -64,12 +102,35 @@ const WithModal = ({ hidden, addWithDraw, changeValue, changeDescription }) => {
         ease-in-out
         m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                onChange={(e) => {
-                  changeDescription(e.target.value);
-                }}
-                type={"text"}
-                placeholder="description"
-              />
+                  type={"date"}
+                />
+                <select
+                  onChange={(e) => {
+                    changeCategory(e.target.value);
+                  }}
+                  className="form-control
+        block
+        w-1/2
+        px-3 
+        my-1 mx-1
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                >
+                  <option selected> </option>
+                  <option value="цалин">цалин</option>
+                  <option value="нэмэлт">нэмэлт орлого</option>
+                  <option value="бусад">бусад</option>
+                </select>
+              </div>
             </div>
 
             <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
@@ -119,28 +180,7 @@ const WithModal = ({ hidden, addWithDraw, changeValue, changeDescription }) => {
                 aria-label="Close"
               />
             </div>
-            <div className="modal-body relative p-4">
-              <p>
-                This is some placeholder content to show a vertically centered
-                modal. We've added some extra copy here to show how vertically
-                centering the modal works when combined with scrollable modals.
-                We also use some repeated line breaks to quickly extend the
-                height of the content, thereby triggering the scrolling. When
-                content becomes longer than the predefined max-height of modal,
-                content will be cropped and scrollable within the modal.
-              </p>
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <p>Just like that.</p>
-            </div>
+            <div className="modal-body relative p-4"></div>
             <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
               <button
                 type="button"

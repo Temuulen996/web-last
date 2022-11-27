@@ -7,6 +7,7 @@ export default async function handler(req, res) {
   dbConnect();
   if (method == "POST") {
     try {
+      console.log(req.body);
       const user = await List.create(req.body);
       res.status(201).json(user);
     } catch (err) {
