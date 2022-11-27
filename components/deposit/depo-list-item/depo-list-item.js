@@ -3,7 +3,7 @@ import axios from "axios";
 import moment from "moment";
 const DepoListItem = ({ el }) => {
   const router = useRouter();
-
+  // moment.locale("mn");
   const deleteListItem = async () => {
     axios
       .delete(`http://localhost:3000/api/depo-list/${el._id}`)
@@ -26,7 +26,7 @@ const DepoListItem = ({ el }) => {
               </h5>
               <p className="text-gray-700 text-base mb-4">{el.description}</p>
               <p className="text-gray-600 text-xs">
-                {moment(el.inserted).subtract(10, "days").calendar()}
+                {moment(el.inserted).format("LL")}
               </p>
             </div>
             <div className="text-xl md:text-2xl text-red-500 w-1/3 p-2 flex justify-center items-center">

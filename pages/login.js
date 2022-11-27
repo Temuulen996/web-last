@@ -39,7 +39,7 @@ const Login = () => {
   };
   return (
     <>
-      <div className="h-screen w-full flex justify-center items-center bg-no-repeat bg-cover bg-[url(https://images.unsplash.com/photo-1581417478175-a9ef18f210c2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)]">
+      <div className="h-screen w-full flex justify-center items-center bg-no-repeat bg-cover bg-[url(https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80)]">
         <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
           <form>
             <div className="form-group mb-6">

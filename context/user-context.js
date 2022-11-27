@@ -57,7 +57,7 @@ export const UserStore = (props) => {
     ) {
       setErr("");
       axios
-        .post("http://localhost:3000/api/users", {
+        .post("/api/users", {
           name: regist.firstname,
           surname: regist.lastname,
           email: regist.email,

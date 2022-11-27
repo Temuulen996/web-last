@@ -10,5 +10,9 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require("tw-elements/dist/plugin"), require("flowbite/plugin")],
+  plugins: [
+    require("tw-elements/dist/plugin"),
+    require("flowbite/plugin"),
+    require("tailwind-scrollbar")({ nocompatible: true }),
+  ],
 };

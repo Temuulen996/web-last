@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import Chart from "chart.js/auto";
 import { Pie } from "react-chartjs-2";
 import Spinner from "../../spinner/spinner";
-const labels = ["цалин", "нэмэлт орлого", "бусад"];
+const labels = ["хүнс", "зээл", "төлбөр", "бусад"];
 
-const PieChart = ({ userId, list }) => {
+const PieChartDepo = ({ userId, list }) => {
   const [myData, setMyData] = useState(null);
   const [isLoading, setLoading] = useState(false);
 
@@ -17,17 +17,19 @@ const PieChart = ({ userId, list }) => {
   //   };
   useEffect(() => {
     setLoading(true);
-    // fetch(`/api/with-list/${userId}`)
+    // fetch(`http://localhost:3000/api/with-list/${userId}`)
     //   .then((res) => res.json())
     //   .then((data) => {
-    let daaataaa = [0, 0, 0];
+    let daaataaa = [0, 0, 0, 0];
     list.map((el, i) => {
-      if (el.category === "цалин") {
+      if (el.category === "хүнс") {
         daaataaa[0] = daaataaa[0] + el.value;
-      } else if (el.category === "бусад") {
-        daaataaa[2] = daaataaa[2] + el.value;
-      } else if (el.category === "нэмэлт") {
+      } else if (el.category === "зээл") {
         daaataaa[1] = daaataaa[1] + el.value;
+      } else if (el.category === "төлбөр") {
+        daaataaa[2] = daaataaa[2] + el.value;
+      } else if (el.category === "бусад") {
+        daaataaa[3] = daaataaa[3] + el.value;
       }
       console.log(el.category);
     });
@@ -41,7 +43,7 @@ const PieChart = ({ userId, list }) => {
     labels: labels,
     datasets: [
       {
-        label: "орлого",
+        label: "зарлага",
         backgroundColor: "rgb(255, 99, 132)",
         borderColor: "rgb(0,0,255)",
         data: myData,
@@ -57,4 +59,4 @@ const PieChart = ({ userId, list }) => {
     </div>
   );
 };
-export default PieChart;
+export default PieChartDepo;

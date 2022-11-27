@@ -10,6 +10,7 @@ import axios from "axios";
 import DepoForm from "../components/deposit/depo-form/depo-form";
 import DepoListItem from "../components/deposit/depo-list-item/depo-list-item";
 import DepoModal from "../components/deposit/depo-modal/depo-modal";
+import DepoChartModal from "../components/deposit/depo-chart-modal/depo-chart-modal";
 export const getServerSideProps = async (req, res) => {
   const token = getCookie("token", req, res);
   const userId = getCookie("userId", req, res);
@@ -24,6 +25,7 @@ export const getServerSideProps = async (req, res) => {
   };
 };
 const Deposit = ({ token, userId, deposities }) => {
+  const [hidden, setHidden] = useState(true);
   const [list, setList] = useState(deposities);
   const router = useRouter();
   const [deposit, setDeposit] = useState({
@@ -65,6 +67,7 @@ const Deposit = ({ token, userId, deposities }) => {
       .catch((err) => {
         console.log(err);
       });
+    setDeposit({ value: 0, description: "n/a", category: "", date: "" });
     await changeList();
   };
   const changeValue = (value) => {
@@ -75,7 +78,7 @@ const Deposit = ({ token, userId, deposities }) => {
   };
   const changeCategory = (category) => {
     setDeposit({ ...deposit, category: category });
-    console.log(deposit.category);
+    console.log(deposit);
   };
   const changeDate = (date) => {
     setDeposit({ ...deposit, date: date });
@@ -83,6 +86,12 @@ const Deposit = ({ token, userId, deposities }) => {
   };
   return token ? (
     <Layout>
+      <DepoChartModal
+        hidden={hidden}
+        setHidden={setHidden}
+        userId={userId}
+        list={list}
+      />
       <DepoModal
         changeDate={changeDate}
         changeCategory={changeCategory}
@@ -101,8 +110,17 @@ const Deposit = ({ token, userId, deposities }) => {
           >
             зарлага нэмэх
           </button>
+          <button
+            onClick={() => {
+              setHidden(false);
+            }}
+            type="button"
+            className="inline-block mx-2 px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+          >
+            chart харах
+          </button>
         </div>
-        <div>
+        <div className="h-[700px] overflow-scroll overflow-x-hidden scrollbar scrollbar-thumb-gray-200 scrollbar-track-white">
           {list.length != 0 ? (
             list.map((el, i) => <DepoListItem el={el} key={i} />)
           ) : (

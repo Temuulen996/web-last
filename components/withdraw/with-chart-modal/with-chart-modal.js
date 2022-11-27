@@ -13,7 +13,7 @@ const WithChartModal = ({ hidden, setHidden, userId, list }) => {
     >
       <div className="w-full flex flex-col justify-center h-full items-center ">
         <PieChart userId={userId} list={list} />
-        <LineChart />
+        <LineChart userId={userId} list={list} />
       </div>
     </div>
   );

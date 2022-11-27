@@ -125,7 +125,7 @@ const DepoModal = ({
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 >
                   <option selected> </option>
-                  <option value="цалин">хүнс</option>
+                  <option value="хүнс">хүнс</option>
                   <option value="зээл">зээл</option>
                   <option value="төлбөр">төлбөр</option>
                   <option value="бусад">бусад</option>

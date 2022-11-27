@@ -3,12 +3,11 @@ import React, { useEffect, useState } from "react";
 import Chart from "chart.js/auto";
 import { Pie } from "react-chartjs-2";
 import Spinner from "../../spinner/spinner";
-const labels = ["цалин", "нэмэлт орлого", "бусад"];
+const labels = ["орлого", "зарлага"];
 
-const PieChart = ({ userId, list }) => {
-  const [myData, setMyData] = useState(null);
+const PieChartReport = ({ withlists, userId, depolists }) => {
   const [isLoading, setLoading] = useState(false);
-
+  const [myData, setMyData] = useState([]);
   //   const fetchData = async () => {
   //
 
@@ -20,23 +19,19 @@ const PieChart = ({ userId, list }) => {
     // fetch(`/api/with-list/${userId}`)
     //   .then((res) => res.json())
     //   .then((data) => {
-    let daaataaa = [0, 0, 0];
-    list.map((el, i) => {
-      if (el.category === "цалин") {
-        daaataaa[0] = daaataaa[0] + el.value;
-      } else if (el.category === "бусад") {
-        daaataaa[2] = daaataaa[2] + el.value;
-      } else if (el.category === "нэмэлт") {
-        daaataaa[1] = daaataaa[1] + el.value;
-      }
-      console.log(el.category);
+    let daaataaa = [0, 0];
+    withlists.map((el, i) => {
+      daaataaa[0] = daaataaa[0] + el.value;
+    });
+    depolists.map((el, i) => {
+      daaataaa[1] = daaataaa[1] + el.value;
     });
     console.log(daaataaa);
     setMyData(daaataaa);
     setLoading(false);
     //   });
   }, []);
-  console.log(myData);
+  console.log(myData[1]);
   const data = {
     labels: labels,
     datasets: [
@@ -52,9 +47,9 @@ const PieChart = ({ userId, list }) => {
   if (!data) return <p>No data</p>;
 
   return (
-    <div className="w-full h-[400px] flex justify-center items-center">
+    <div className="w-full h-[400px] md:h-[550px] flex justify-center items-center">
       <Pie data={data} height={150} />
     </div>
   );
 };
-export default PieChart;
+export default PieChartReport;

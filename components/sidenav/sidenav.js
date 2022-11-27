@@ -16,7 +16,7 @@ const SideNav = () => {
     const token = getCookie("token");
     console.log(token);
     axios
-      .delete(`http://localhost:3000/api/get-session/${token}`)
+      .delete(`/api/get-session/${token}`)
       .then((res) => {
         console.log(res);
       })

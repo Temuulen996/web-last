@@ -11,7 +11,7 @@ const Register = () => {
   }, []);
   return (
     <>
-      <div className=" w-full h-full z-20 bg-no-repeat bg-cover bg-[url(https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1129&q=80)]">
+      <div className=" w-full h-full z-20 bg-no-repeat bg-cover bg-[url(https://images.unsplash.com/photo-1591696205602-2f950c417cb9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80)]">
         <div className="h-screen w-full flex justify-center items-center ">
           <div className=" mx-7 md:mx-0 block p-6 rounded-lg shadow-lg bg-white max-w-md">
             <form>

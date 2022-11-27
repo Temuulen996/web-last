@@ -87,7 +87,7 @@ const LineChartDepo = ({ list, userId }) => {
     labels: labels,
     datasets: [
       {
-        label: "орлого",
+        label: "зарлага",
         backgroundColor: "rgb(255, 99, 132)",
         borderColor: "rgb(255, 99, 132)",
         data: myData,

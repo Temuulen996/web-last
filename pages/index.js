@@ -82,6 +82,7 @@ export default function Home({ token, userId, withdraws }) {
         console.log(err);
       });
     // router.reload();
+    setWithdraw({ value: 0, description: "n/a", category: "", date: "" });
     await changeList();
   };
   const changeValue = (value) => {
@@ -136,7 +137,7 @@ export default function Home({ token, userId, withdraws }) {
           </button>
         </div>
 
-        <div className="h-[700px] overflow-scroll overflow-x-hidden">
+        <div className="h-[700px] overflow-scroll overflow-x-hidden scrollbar scrollbar-thumb-gray-200 scrollbar-track-white">
           {list.length != 0 ? (
             list.map((el, i) => {
               if (el.type == "WITHDRAW") {
