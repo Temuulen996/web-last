@@ -27,6 +27,7 @@ export const getServerSideProps = async (req, res) => {
 const Deposit = ({ token, userId, deposities }) => {
   const [hidden, setHidden] = useState(true);
   const [list, setList] = useState(deposities);
+  const [needData, setNeedData] = useState(false);
   const router = useRouter();
   const [deposit, setDeposit] = useState({
     value: 0,
@@ -38,12 +39,21 @@ const Deposit = ({ token, userId, deposities }) => {
     if (token === false) {
       router.replace("/login");
     }
-  }, []);
+    fetch(`http://localhost:3000/api/depo-list/${userId}`)
+      .then((data) => data.json())
+      .then((res) => {
+        setList(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setNeedData(false);
+  }, [needData]);
   const changeList = async () => {
     let res;
     res = await fetch(`http://localhost:3000/api/depo-list/${userId}`);
     res = await res.json();
-    console.log(res);
+    // console.log(res);
     setList(res);
   };
   const addDeposit = async () => {
@@ -62,13 +72,13 @@ const Deposit = ({ token, userId, deposities }) => {
         _user: userId,
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
+    setNeedData(true);
     setDeposit({ value: 0, description: "n/a", category: "", date: "" });
-    await changeList();
   };
   const changeValue = (value) => {
     setDeposit({ ...deposit, value: value });
@@ -78,11 +88,11 @@ const Deposit = ({ token, userId, deposities }) => {
   };
   const changeCategory = (category) => {
     setDeposit({ ...deposit, category: category });
-    console.log(deposit);
+    // console.log(deposit);
   };
   const changeDate = (date) => {
     setDeposit({ ...deposit, date: date });
-    console.log(deposit.date);
+    // console.log(deposit.date);
   };
   return token ? (
     <Layout>

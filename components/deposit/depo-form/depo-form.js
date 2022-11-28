@@ -10,7 +10,7 @@ const DepoForm = ({
       <input
         onChange={(e) => {
           changeValue(e.target.value);
-          console.log(deposit.value);
+          // console.log(deposit.value);
         }}
         placeholder="value"
         type={"number"}
@@ -18,7 +18,7 @@ const DepoForm = ({
       <input
         onChange={(e) => {
           changeDescription(e.target.value);
-          console.log(deposit.description);
+          // console.log(deposit.description);
         }}
         type={"text"}
         placeholder="description"
@@ -26,7 +26,7 @@ const DepoForm = ({
       <input
         onChange={(e) => {
           changeCategory(e.target.value);
-          console.log(deposit.category);
+          // console.log(deposit.category);
         }}
         type={"text"}
         placeholder="category"

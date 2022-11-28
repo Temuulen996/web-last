@@ -29,14 +29,11 @@ const PieChart = ({ userId, list }) => {
       } else if (el.category === "нэмэлт") {
         daaataaa[1] = daaataaa[1] + el.value;
       }
-      console.log(el.category);
     });
-    console.log(daaataaa);
     setMyData(daaataaa);
     setLoading(false);
     //   });
-  }, []);
-  console.log(myData);
+  }, [list]);
   const data = {
     labels: labels,
     datasets: [

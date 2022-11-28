@@ -36,13 +36,11 @@ const LineChartDepo = ({ list, userId }) => {
     //   .then((data) => {
     let daaataaa = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     list.map((el, i) => {
-      console.log(el.inserted);
       let obj = new Date(el.inserted);
       let month = obj.getMonth();
 
       let year = obj.getFullYear();
       let currentYear = new Date().getFullYear();
-      console.log(currentYear);
       if (month === 1 && year === currentYear) {
         daaataaa[1] = daaataaa[1] + el.value;
       } else if (month === 2 && year === currentYear) {
@@ -68,7 +66,7 @@ const LineChartDepo = ({ list, userId }) => {
       } else if (month === 12 && year === currentYear) {
         daaataaa[12] = daaataaa[12] + el.value;
       }
-      //   console.log(month);
+      //   // console.log(month);
       //   if (el.category === "цалин") {
       //     daaataaa[0] = daaataaa[0] + el.value;
       //   } else if (el.category === "бусад") {
@@ -76,13 +74,12 @@ const LineChartDepo = ({ list, userId }) => {
       //   } else if (el.category === "нэмэлт") {
       //     daaataaa[1] = daaataaa[1] + el.value;
       //   }
-      //   console.log(el.category);
+      //   // console.log(el.category);
     });
-    console.log(daaataaa);
     setMyData(daaataaa);
     setLoading(false);
     //   });
-  }, []);
+  }, [list]);
   const data = {
     labels: labels,
     datasets: [

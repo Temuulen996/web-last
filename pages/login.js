@@ -17,18 +17,18 @@ const Login = () => {
     setLog({ ...log, password: k });
   };
   const login = async () => {
-    console.log(log);
+    // console.log(log);
     const isExist = await axios.post("http://localhost:3000/api/check", {
       email: log.username,
       password: log.password,
     });
-    console.log(isExist);
+    // console.log(isExist);
     if (isExist.data.user) {
-      console.log("amjilttaii");
+      // console.log("amjilttaii");
       let token = await axios.post("http://localhost:3000/api/session", {
         _user: isExist.data.user._id,
       });
-      console.log(token);
+      // console.log(token);
       setCookie("token", token.data.token);
       setCookie("userId", token.data._user);
       userCtx.setErr("");

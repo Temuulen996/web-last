@@ -31,14 +31,11 @@ const PieChartDepo = ({ userId, list }) => {
       } else if (el.category === "бусад") {
         daaataaa[3] = daaataaa[3] + el.value;
       }
-      console.log(el.category);
     });
-    console.log(daaataaa);
     setMyData(daaataaa);
     setLoading(false);
     //   });
   }, []);
-  console.log(myData);
   const data = {
     labels: labels,
     datasets: [

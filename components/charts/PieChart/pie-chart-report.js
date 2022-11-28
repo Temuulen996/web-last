@@ -26,12 +26,10 @@ const PieChartReport = ({ withlists, userId, depolists }) => {
     depolists.map((el, i) => {
       daaataaa[1] = daaataaa[1] + el.value;
     });
-    console.log(daaataaa);
     setMyData(daaataaa);
     setLoading(false);
     //   });
   }, []);
-  console.log(myData[1]);
   const data = {
     labels: labels,
     datasets: [

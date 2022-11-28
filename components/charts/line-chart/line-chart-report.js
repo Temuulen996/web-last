@@ -34,57 +34,58 @@ const LineChartReport = ({ withlists, userId, depolists }) => {
     //   .then((data) => {
     let daaataaawith = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     let daaataaadepo = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    depolists.map((el, i) => {
-      console.log(el.inserted);
-      let obj = new Date(el.inserted);
-      let month = obj.getMonth();
+    depolists.map(
+      (el, i) => {
+        let obj = new Date(el.inserted);
+        let month = obj.getMonth();
 
-      let year = obj.getFullYear();
-      let currentYear = new Date().getFullYear();
-      console.log(currentYear);
-      if (month === 1 && year === currentYear) {
-        daaataaadepo[1] = daaataaadepo[1] + el.value;
-      } else if (month === 2 && year === currentYear) {
-        daaataaadepo[2] = daaataaadepo[2] + el.value;
-      } else if (month === 3 && year === currentYear) {
-        daaataaadepo[3] = daaataaadepo[3] + el.value;
-      } else if (month === 4 && year === currentYear) {
-        daaataaadepo[4] = daaataaadepo[4] + el.value;
-      } else if (month === 5 && year === currentYear) {
-        daaataaadepo[5] = daaataaadepo[5] + el.value;
-      } else if (month === 6 && year === currentYear) {
-        daaataaadepo[6] = daaataaadepo[6] + el.value;
-      } else if (month === 7 && year === currentYear) {
-        daaataaadepo[7] = daaataaadepo[7] + el.value;
-      } else if (month === 8 && year === currentYear) {
-        daaataaadepo[8] = daaataaadepo[8] + el.value;
-      } else if (month === 9 && year === currentYear) {
-        daaataaadepo[9] = daaataaadepo[9] + el.value;
-      } else if (month === 10 && year === currentYear) {
-        daaataaadepo[10] = daaataaadepo[10] + el.value;
-      } else if (month === 11 && year === currentYear) {
-        daaataaadepo[11] = daaataaadepo[11] + el.value;
-      } else if (month === 12 && year === currentYear) {
-        daaataaadepo[12] = daaataaadepo[12] + el.value;
-      }
-      //   console.log(month);
-      //   if (el.category === "цалин") {
-      //     daaataaawith[0] = daaataaawith[0] + el.value;
-      //   } else if (el.category === "бусад") {
-      //     daaataaawith[2] = daaataaawith[2] + el.value;
-      //   } else if (el.category === "нэмэлт") {
-      //     daaataaawith[1] = daaataaawith[1] + el.value;
-      //   }
-      //   console.log(el.category);
-    });
+        let year = obj.getFullYear();
+        let currentYear = new Date().getFullYear();
+        if (month === 1 && year === currentYear) {
+          daaataaadepo[1] = daaataaadepo[1] + el.value;
+        } else if (month === 2 && year === currentYear) {
+          daaataaadepo[2] = daaataaadepo[2] + el.value;
+        } else if (month === 3 && year === currentYear) {
+          daaataaadepo[3] = daaataaadepo[3] + el.value;
+        } else if (month === 4 && year === currentYear) {
+          daaataaadepo[4] = daaataaadepo[4] + el.value;
+        } else if (month === 5 && year === currentYear) {
+          daaataaadepo[5] = daaataaadepo[5] + el.value;
+        } else if (month === 6 && year === currentYear) {
+          daaataaadepo[6] = daaataaadepo[6] + el.value;
+        } else if (month === 7 && year === currentYear) {
+          daaataaadepo[7] = daaataaadepo[7] + el.value;
+        } else if (month === 8 && year === currentYear) {
+          daaataaadepo[8] = daaataaadepo[8] + el.value;
+        } else if (month === 9 && year === currentYear) {
+          daaataaadepo[9] = daaataaadepo[9] + el.value;
+        } else if (month === 10 && year === currentYear) {
+          daaataaadepo[10] = daaataaadepo[10] + el.value;
+        } else if (month === 11 && year === currentYear) {
+          daaataaadepo[11] = daaataaadepo[11] + el.value;
+        } else if (month === 12 && year === currentYear) {
+          daaataaadepo[12] = daaataaadepo[12] + el.value;
+        }
+        //   // console.log(month);
+        //   if (el.category === "цалин") {
+        //     daaataaawith[0] = daaataaawith[0] + el.value;
+        //   } else if (el.category === "бусад") {
+        //     daaataaawith[2] = daaataaawith[2] + el.value;
+        //   } else if (el.category === "нэмэлт") {
+        //     daaataaawith[1] = daaataaawith[1] + el.value;
+        //   }
+        //   // console.log(el.category);
+      },
+      [depolists, withlists]
+    );
     withlists.map((el, i) => {
-      console.log(el.inserted);
+      // console.log(el.inserted);
       let obj = new Date(el.inserted);
       let month = obj.getMonth();
 
       let year = obj.getFullYear();
       let currentYear = new Date().getFullYear();
-      console.log(currentYear);
+      // console.log(currentYear);
       if (month === 1 && year === currentYear) {
         daaataaawith[1] = daaataaawith[1] + el.value;
       } else if (month === 2 && year === currentYear) {
@@ -110,7 +111,7 @@ const LineChartReport = ({ withlists, userId, depolists }) => {
       } else if (month === 12 && year === currentYear) {
         daaataaawith[12] = daaataaawith[12] + el.value;
       }
-      //   console.log(month);
+      //   // console.log(month);
       //   if (el.category === "цалин") {
       //     daaataaawith[0] = daaataaawith[0] + el.value;
       //   } else if (el.category === "бусад") {
@@ -118,7 +119,7 @@ const LineChartReport = ({ withlists, userId, depolists }) => {
       //   } else if (el.category === "нэмэлт") {
       //     daaataaawith[1] = daaataaawith[1] + el.value;
       //   }
-      //   console.log(el.category);
+      //   // console.log(el.category);
     });
     setMyDatawith(daaataaawith);
     setMyDatadepo(daaataaadepo);

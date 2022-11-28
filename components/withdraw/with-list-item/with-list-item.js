@@ -8,12 +8,12 @@ const WithListItem = ({ el }) => {
     axios
       .delete(`http://localhost:3000/api/with-list/${el._id}`)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
-    router.reload();
+    router.replace(router.asPath);
   };
   return (
     <div style={{ marginTop: "5px" }} className=" w-full my-4">

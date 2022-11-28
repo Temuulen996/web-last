@@ -5,7 +5,7 @@ import Layout from "../components/layout/layout";
 // import CardLineChart from "../components/line-chart/line-chart";
 export const getServerSideProps = async (req, res) => {
   const userId = getCookie("userId", req, res);
-  console.log(userId);
+  // console.log(userId);
   let withlists = await fetch(`http://localhost:3000/api/with-list/${userId}`);
   withlists = await withlists.json();
   let depolists = await fetch(`http://localhost:3000/api/depo-list/${userId}`);
@@ -19,8 +19,8 @@ export const getServerSideProps = async (req, res) => {
   };
 };
 const Report = ({ withlists, userId, depolists }) => {
-  console.log(withlists);
-  console.log(depolists);
+  // console.log(withlists);
+  // console.log(depolists);
   return (
     <Layout>
       <div className="w-2/3 ">

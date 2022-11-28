@@ -8,12 +8,13 @@ const DepoListItem = ({ el }) => {
     axios
       .delete(`http://localhost:3000/api/depo-list/${el._id}`)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
-    router.reload();
+    // router.reload();
+    router.replace(router.asPath);
   };
   return (
     <div style={{ marginTop: "5px" }} classname=" w-full my-4">

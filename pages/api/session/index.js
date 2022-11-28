@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   if (method == "POST") {
     try {
       const session = await Session.create(req.body);
-      console.log(session);
+      // console.log(session);
       res.status(201).json(session);
     } catch (err) {
       res.status(500).json(err);
