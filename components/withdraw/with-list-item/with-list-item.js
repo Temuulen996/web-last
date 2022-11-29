@@ -6,7 +6,7 @@ const WithListItem = ({ el, setNeedData }) => {
 
   const deleteListItem = async () => {
     axios
-      .delete(`http://localhost:3000/api/with-list/${el._id}`)
+      .delete(`/api/with-list/${el._id}`)
       .then((res) => {
         res;
       })

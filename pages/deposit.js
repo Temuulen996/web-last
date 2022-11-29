@@ -40,7 +40,7 @@ const Deposit = ({ token, userId, deposities }) => {
       router.replace("/login");
       return;
     }
-    fetch(`http://localhost:3000/api/depo-list/${userId}`)
+    fetch(`api/depo-list/${userId}`)
       .then((data) => data.json())
       .then((res) => {
         setList(res);
@@ -52,7 +52,7 @@ const Deposit = ({ token, userId, deposities }) => {
   }, [needData]);
   const changeList = async () => {
     let res;
-    res = await fetch(`http://localhost:3000/api/depo-list/${userId}`);
+    res = await fetch(`api/depo-list/${userId}`);
     res = await res.json();
     res;
     setList(res);
@@ -64,7 +64,7 @@ const Deposit = ({ token, userId, deposities }) => {
       return;
     }
     axios
-      .post("http://localhost:3000/api/depo-lists", {
+      .post("/api/depo-lists", {
         value: deposit.value,
         description: deposit.description,
         category: deposit.category,

@@ -18,14 +18,14 @@ const Login = () => {
   };
   const login = async () => {
     log;
-    const isExist = await axios.post("http://localhost:3000/api/check", {
+    const isExist = await axios.post("/api/check", {
       email: log.username,
       password: log.password,
     });
     isExist;
     if (isExist.data.user) {
       ("amjilttaii");
-      let token = await axios.post("http://localhost:3000/api/session", {
+      let token = await axios.post("/api/session", {
         _user: isExist.data.user._id,
       });
       token;

@@ -13,6 +13,7 @@ export const getServerSideProps = async (req, res) => {
   let withdraws;
   const token = getCookie("token", req, res);
   const userId = getCookie("userId", req, res);
+  console.log(req.headers);
   if (userId == undefined) {
     withdraws = [];
   } else {
@@ -22,7 +23,6 @@ export const getServerSideProps = async (req, res) => {
   if (typeof withdraws === "object" && withdraws.length === 0) {
     withdraws = [];
   }
-  (withdraws);
   return {
     props: {
       token: token ? token : false,
@@ -31,12 +31,13 @@ export const getServerSideProps = async (req, res) => {
     },
   };
 };
-export default function Home({ token, userId, withdraws }) {
+export default function Home({ token, userId, withdraws, req }) {
+  console.log(req);
   const router = useRouter();
   const [list, setList] = useState(withdraws);
   const [hidden, setHidden] = useState(true);
   const [needData, setNeedData] = useState(false);
-  (list);
+  list;
 
   const [withdraw, setWithdraw] = useState({
     value: 0,
@@ -44,13 +45,13 @@ export default function Home({ token, userId, withdraws }) {
     category: "",
     date: "",
   });
-  (token);
+  token;
   useEffect(() => {
     if (token === false) {
       router.replace("/login");
       return;
     }
-    fetch(`http://localhost:3000/api/with-list/${userId}`)
+    fetch(`api/with-list/${userId}`)
       .then((data) => data.json())
       .then((res) => {
         setList(res);
@@ -62,9 +63,9 @@ export default function Home({ token, userId, withdraws }) {
   }, [needData]);
   const changeList = async () => {
     let res;
-    res = await fetch(`http://localhost:3000/api/with-list/${userId}`);
+    res = await fetch(`api/with-list/${userId}`);
     res = await res.json();
-    (res);
+    res;
     setList(res);
   };
   const addWithDraw = async () => {
@@ -78,7 +79,7 @@ export default function Home({ token, userId, withdraws }) {
       return;
     }
     axios
-      .post("http://localhost:3000/api/with-lists", {
+      .post("/api/with-lists", {
         value: withdraw.value,
         description: withdraw.description,
         category: withdraw.category,
@@ -103,12 +104,12 @@ export default function Home({ token, userId, withdraws }) {
   };
   const changeDate = (date) => {
     setWithdraw({ ...withdraw, date: date });
-    (withdraw.date);
+    withdraw.date;
   };
   const changeCategory = (category) => {
     setWithdraw({ ...withdraw, category: category });
 
-    (withdraw.category);
+    withdraw.category;
   };
   return token ? (
     <Layout>

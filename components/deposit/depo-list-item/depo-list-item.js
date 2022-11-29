@@ -6,7 +6,7 @@ const DepoListItem = ({ el, setNeedData }) => {
   // moment.locale("mn");
   const deleteListItem = async () => {
     axios
-      .delete(`http://localhost:3000/api/depo-list/${el._id}`)
+      .delete(`/api/depo-list/${el._id}`)
       .then((res) => {
         console.log(res);
       })
