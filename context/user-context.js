@@ -27,27 +27,27 @@ export const UserStore = (props) => {
   });
   const setLastName = (k) => {
     setRegist({ ...regist, lastname: k });
-    // console.log(regist.lastname);
+    regist.lastname;
   };
   const setFirstName = (k) => {
     setRegist({ ...regist, firstname: k });
-    // console.log(regist.firstname);
+    regist.firstname;
   };
   const setEmail = (k) => {
     setRegist({ ...regist, email: k });
-    // console.log(regist.lastname);
+    regist.lastname;
   };
   const setPassword = (k) => {
     setRegist({ ...regist, password: k });
-    // console.log(regist.password);
+    regist.password;
   };
   const setbornDate = (k) => {
     setRegist({ ...regist, bornDate: k });
-    // console.log(regist.bornDate);
+    regist.bornDate;
   };
 
   const SingUp = () => {
-    // console.log(regist.firstname.length);
+    regist.firstname.length;
     if (
       regist.firstname.length != 0 &&
       regist.lastname.length != 0 &&
@@ -65,10 +65,10 @@ export const UserStore = (props) => {
           age: regist.bornDate,
         })
         .then((res) => {
-          // console.log(res);
+          res;
         })
         .catch((err) => {
-          // console.log(err);
+          err;
         });
       router.replace("/login");
       return;

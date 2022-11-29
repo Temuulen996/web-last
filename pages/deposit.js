@@ -31,13 +31,14 @@ const Deposit = ({ token, userId, deposities }) => {
   const router = useRouter();
   const [deposit, setDeposit] = useState({
     value: 0,
-    description: "n/a",
+    description: "",
     category: "",
     date: "",
   });
   useEffect(() => {
     if (token === false) {
       router.replace("/login");
+      return;
     }
     fetch(`http://localhost:3000/api/depo-list/${userId}`)
       .then((data) => data.json())
@@ -53,13 +54,13 @@ const Deposit = ({ token, userId, deposities }) => {
     let res;
     res = await fetch(`http://localhost:3000/api/depo-list/${userId}`);
     res = await res.json();
-    // console.log(res);
+    res;
     setList(res);
   };
   const addDeposit = async () => {
     const userId = getCookie("userId");
     if (deposit.value === 0 || deposit.category === "" || deposit.date === "") {
-      alert("zarlaga nemehed aldaa garlaa");
+      alert("та мэдээллээ бүрэн гүйцэт оруулна уу");
       return;
     }
     axios
@@ -72,13 +73,13 @@ const Deposit = ({ token, userId, deposities }) => {
         _user: userId,
       })
       .then((res) => {
-        // console.log(res);
+        res;
       })
       .catch((err) => {
-        // console.log(err);
+        err;
       });
     setNeedData(true);
-    setDeposit({ value: 0, description: "n/a", category: "", date: "" });
+    setDeposit({ value: 0, description: "", category: "", date: "" });
   };
   const changeValue = (value) => {
     setDeposit({ ...deposit, value: value });
@@ -88,11 +89,11 @@ const Deposit = ({ token, userId, deposities }) => {
   };
   const changeCategory = (category) => {
     setDeposit({ ...deposit, category: category });
-    // console.log(deposit);
+    deposit;
   };
   const changeDate = (date) => {
     setDeposit({ ...deposit, date: date });
-    // console.log(deposit.date);
+    deposit.date;
   };
   return token ? (
     <Layout>
@@ -132,7 +133,9 @@ const Deposit = ({ token, userId, deposities }) => {
         </div>
         <div className="h-[700px] overflow-scroll overflow-x-hidden scrollbar scrollbar-thumb-gray-200 scrollbar-track-white">
           {list.length != 0 ? (
-            list.map((el, i) => <DepoListItem el={el} key={i} />)
+            list.map((el, i) => (
+              <DepoListItem setNeedData={setNeedData} el={el} key={i} />
+            ))
           ) : (
             <div></div>
           )}

@@ -66,7 +66,7 @@ const LineChartDepo = ({ list, userId }) => {
       } else if (month === 12 && year === currentYear) {
         daaataaa[12] = daaataaa[12] + el.value;
       }
-      //   // console.log(month);
+      //   (month);
       //   if (el.category === "цалин") {
       //     daaataaa[0] = daaataaa[0] + el.value;
       //   } else if (el.category === "бусад") {
@@ -74,7 +74,7 @@ const LineChartDepo = ({ list, userId }) => {
       //   } else if (el.category === "нэмэлт") {
       //     daaataaa[1] = daaataaa[1] + el.value;
       //   }
-      //   // console.log(el.category);
+      //   (el.category);
     });
     setMyData(daaataaa);
     setLoading(false);
@@ -85,8 +85,8 @@ const LineChartDepo = ({ list, userId }) => {
     datasets: [
       {
         label: "орлого",
-        backgroundColor: "rgb(255, 99, 132)",
-        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgb(112, 219, 86)",
+        borderColor: "rgb(112, 219, 86)",
         data: myData,
       },
     ],

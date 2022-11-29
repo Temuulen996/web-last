@@ -4,7 +4,7 @@ import dbConnect from "../../../utils/dbConnection";
 export default async function handler(req, res) {
   const { method } = req;
   const id = req.query.userId;
-  // console.log(req);
+  req;
   await dbConnect();
   if (method == "GET") {
     try {

@@ -1,19 +1,19 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import moment from "moment";
-const WithListItem = ({ el }) => {
+const WithListItem = ({ el, setNeedData }) => {
   const router = useRouter();
 
   const deleteListItem = async () => {
     axios
       .delete(`http://localhost:3000/api/with-list/${el._id}`)
       .then((res) => {
-        // console.log(res);
+        res;
       })
       .catch((err) => {
-        // console.log(err);
+        err;
       });
-    router.replace(router.asPath);
+    setNeedData(true);
   };
   return (
     <div style={{ marginTop: "5px" }} className=" w-full my-4">

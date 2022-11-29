@@ -4,7 +4,7 @@ import User from "../../../models/User";
 export default async function handler(req, res) {
   const { method } = req;
   const body = req.body;
-  // console.log(body);
+  body;
   await dbConnect();
   if (method == "POST") {
     try {

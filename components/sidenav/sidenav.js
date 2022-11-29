@@ -14,14 +14,14 @@ const SideNav = () => {
   };
   const deleteSession = async () => {
     const token = getCookie("token");
-    // console.log(token);
+    token;
     axios
       .delete(`/api/get-session/${token}`)
       .then((res) => {
-        // console.log(res);
+        res;
       })
       .catch((err) => {
-        // console.log(err);
+        err;
       });
   };
   return (

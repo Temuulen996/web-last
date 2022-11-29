@@ -29,7 +29,7 @@ const PieChartReport = ({ withlists, userId, depolists }) => {
     setMyData(daaataaa);
     setLoading(false);
     //   });
-  }, []);
+  }, [withlists, depolists]);
   const data = {
     labels: labels,
     datasets: [

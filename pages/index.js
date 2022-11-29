@@ -22,7 +22,7 @@ export const getServerSideProps = async (req, res) => {
   if (typeof withdraws === "object" && withdraws.length === 0) {
     withdraws = [];
   }
-  // console.log(withdraws);
+  (withdraws);
   return {
     props: {
       token: token ? token : false,
@@ -36,18 +36,19 @@ export default function Home({ token, userId, withdraws }) {
   const [list, setList] = useState(withdraws);
   const [hidden, setHidden] = useState(true);
   const [needData, setNeedData] = useState(false);
-  // console.log(list);
+  (list);
 
   const [withdraw, setWithdraw] = useState({
     value: 0,
-    description: "n/a",
+    description: "",
     category: "",
     date: "",
   });
-  // console.log(token);
+  (token);
   useEffect(() => {
     if (token === false) {
       router.replace("/login");
+      return;
     }
     fetch(`http://localhost:3000/api/with-list/${userId}`)
       .then((data) => data.json())
@@ -63,7 +64,7 @@ export default function Home({ token, userId, withdraws }) {
     let res;
     res = await fetch(`http://localhost:3000/api/with-list/${userId}`);
     res = await res.json();
-    // console.log(res);
+    (res);
     setList(res);
   };
   const addWithDraw = async () => {
@@ -73,7 +74,7 @@ export default function Home({ token, userId, withdraws }) {
       withdraw.category === "" ||
       withdraw.date === ""
     ) {
-      alert("orlogo nemehed aldaa garlaa");
+      alert("та мэдээллээ бүрэн гүйцэт оруулна уу");
       return;
     }
     axios
@@ -92,7 +93,7 @@ export default function Home({ token, userId, withdraws }) {
         console.log(err);
       });
     setNeedData(true);
-    setWithdraw({ value: 0, description: "n/a", category: "", date: "" });
+    setWithdraw({ value: 0, description: "", category: "", date: "" });
   };
   const changeValue = (value) => {
     setWithdraw({ ...withdraw, value: value });
@@ -102,12 +103,12 @@ export default function Home({ token, userId, withdraws }) {
   };
   const changeDate = (date) => {
     setWithdraw({ ...withdraw, date: date });
-    // console.log(withdraw.date);
+    (withdraw.date);
   };
   const changeCategory = (category) => {
     setWithdraw({ ...withdraw, category: category });
 
-    // console.log(withdraw.category);
+    (withdraw.category);
   };
   return token ? (
     <Layout>
@@ -124,6 +125,7 @@ export default function Home({ token, userId, withdraws }) {
         changeValue={changeValue}
         changeDescription={changeDescription}
         addWithDraw={addWithDraw}
+        withdraw={withdraw}
       />
       <div className="w-2/3 ">
         <div className=" flex justify-center">
@@ -150,7 +152,9 @@ export default function Home({ token, userId, withdraws }) {
           {list.length != 0 ? (
             list.map((el, i) => {
               if (el.type == "WITHDRAW") {
-                return <WithListItem el={el} key={i} />;
+                return (
+                  <WithListItem setNeedData={setNeedData} el={el} key={i} />
+                );
               }
             })
           ) : (

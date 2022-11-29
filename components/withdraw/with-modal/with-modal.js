@@ -5,6 +5,7 @@ const WithModal = ({
   changeDescription,
   changeCategory,
   changeDate,
+  withdraw,
 }) => {
   return (
     <div>
@@ -35,6 +36,7 @@ const WithModal = ({
             <div>
               <div className="flex justify-center">
                 <input
+                  value={withdraw.value}
                   className="form-control
         block
         w-1/2
@@ -58,6 +60,7 @@ const WithModal = ({
                   type={"number"}
                 />
                 <input
+                  value={withdraw.description}
                   className="form-control
         block
         w-1/2
@@ -83,6 +86,7 @@ const WithModal = ({
               </div>
               <div className="flex justify-center">
                 <input
+                  value={withdraw.date}
                   onChange={(e) => {
                     changeDate(e.target.value);
                   }}
@@ -105,6 +109,7 @@ const WithModal = ({
                   type={"date"}
                 />
                 <select
+                  value={withdraw.category}
                   defaultValue=""
                   onChange={(e) => {
                     changeCategory(e.target.value);

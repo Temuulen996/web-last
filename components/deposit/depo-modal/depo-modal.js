@@ -104,6 +104,7 @@ const DepoModal = ({
                   type={"date"}
                 />
                 <select
+                  value=""
                   onChange={(e) => {
                     changeCategory(e.target.value);
                   }}
@@ -124,7 +125,7 @@ const DepoModal = ({
         m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 >
-                  <option selected> </option>
+                  <option> </option>
                   <option value="хүнс">хүнс</option>
                   <option value="зээл">зээл</option>
                   <option value="төлбөр">төлбөр</option>

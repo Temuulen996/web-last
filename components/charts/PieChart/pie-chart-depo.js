@@ -35,7 +35,7 @@ const PieChartDepo = ({ userId, list }) => {
     setMyData(daaataaa);
     setLoading(false);
     //   });
-  }, []);
+  }, [list]);
   const data = {
     labels: labels,
     datasets: [
