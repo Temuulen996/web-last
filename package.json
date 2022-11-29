@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "starrt": "node index.js"
+    "lint": "next lint"
   },
   "dependencies": {
     "@coreui/react-chartjs": "^2.1.0",
