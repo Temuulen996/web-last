@@ -13,5 +13,8 @@
     }
   ]
   ,
-  "rewrites": [{ "source": "/(.*)", "destination": ".pages/index.js" }]
+  "rewrites": [{ "source": "/(.*)", "destination": ".pages/index.js" }],
+  "framework": "nextjs"
+
+  
 }
