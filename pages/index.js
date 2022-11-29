@@ -10,14 +10,16 @@ import WithListItem from "../components/withdraw/with-list-item/with-list-item";
 import WithModal from "../components/withdraw/with-modal/with-modal";
 import styles from "../styles/Home.module.css";
 export const getServerSideProps = async (req, res) => {
-  let withdraws;
+  let withdraws = [];
   const token = getCookie("token", req, res);
   const userId = getCookie("userId", req, res);
-  console.log(req);
+  // console.log(req);
 
   if (userId == undefined) {
     withdraws = [];
   } else {
+
+    console.log("endhuseltyvuullaa")
     withdraws = await fetch(
       `${
         process.env.NODE_ENV != "production"
@@ -26,10 +28,12 @@ export const getServerSideProps = async (req, res) => {
       }/api/with-list/${userId}`
     );
     withdraws = await withdraws.json();
+    console.log("working",withdraws)
   }
   if (typeof withdraws === "object" && withdraws.length === 0) {
     withdraws = [];
   }
+  // console.log(withdraws)
   return {
     props: {
       token: token ? token : false,
@@ -39,7 +43,7 @@ export const getServerSideProps = async (req, res) => {
   };
 };
 export default function Home({ token, userId, withdraws, req }) {
-  console.log(req);
+  // console.log(req);
   const router = useRouter();
   const [list, setList] = useState(withdraws);
   const [hidden, setHidden] = useState(true);
@@ -62,9 +66,10 @@ export default function Home({ token, userId, withdraws, req }) {
       .then((data) => data.json())
       .then((res) => {
         setList(res);
+        // console.log(res)
       })
       .catch((err) => {
-        console.log(err);
+        console.log("userSideC",err);
       });
     setNeedData(false);
   }, [needData]);
