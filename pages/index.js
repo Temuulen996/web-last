@@ -19,7 +19,7 @@ export const getServerSideProps = async (req, res) => {
     withdraws = [];
   } else {
 
-    console.log("endhuseltyvuullaa")
+    console.log(process.env.PORT)
     withdraws = await fetch(
       `${
         process.env.NODE_ENV != "production"
