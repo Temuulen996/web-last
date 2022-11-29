@@ -15,24 +15,24 @@ export const getServerSideProps = async (req, res) => {
   const userId = getCookie("userId", req, res);
   // console.log(req);
 
-  // if (userId == undefined) {
-  //   withdraws = [];
-  // } else {
+  if (userId == undefined) {
+    withdraws = [];
+  } else {
 
-  //   console.log(process.env.PORT)
-  //   withdraws = await fetch(
-  //     `${
-  //       process.env.NODE_ENV != "production"
-  //         ? "http://localhost:3000"
-  //         : "https://web-last-2lyd.vercel.app"
-  //     }/api/with-list/${userId}`
-  //   );
-  //   withdraws = await withdraws.json();
-  //   console.log("working",withdraws)
-  // }
-  // if (typeof withdraws === "object" && withdraws.length === 0) {
-  //   withdraws = [];
-  // }
+    console.log(process.env.PORT)
+    withdraws = await fetch(
+      `${
+        process.env.NODE_ENV != "production"
+          ? "http://localhost:3000"
+          : "https://web-last-2lyd.vercel.app"
+      }/api/with-list/${userId}`
+    );
+    withdraws = await withdraws.json();
+    console.log("working",withdraws)
+  }
+  if (typeof withdraws === "object" && withdraws.length === 0) {
+    withdraws = [];
+  }
   // console.log(withdraws)
   return {
     props: {

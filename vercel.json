@@ -12,4 +12,6 @@
       "dest": "pages/api/(.*)"
     }
   ]
+  ,
+  "rewrites": [{ "source": "/(.*)", "destination": ".pages/index.js" }]
 }
