@@ -14,7 +14,7 @@ export const getServerSideProps = async (req, res) => {
     `${
       process.env.NODE_ENV != "production"
         ? "http://localhost:3000"
-        : "https://web-last.vercel.app/"
+        : "https://web-last-2lyd.vercel.app"
     }/api/with-list/${userId}`
   );
   withlists = await withlists.json();
@@ -22,7 +22,7 @@ export const getServerSideProps = async (req, res) => {
     `${
       process.env.NODE_ENV != "production"
         ? "http://localhost:3000"
-        : "https://web-last.vercel.app/"
+        : "https://web-last-2lyd.vercel.app"
     }/api/depo-list/${userId}`
   );
   depolists = await depolists.json();
