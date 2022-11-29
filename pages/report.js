@@ -10,9 +10,21 @@ export const getServerSideProps = async (req, res) => {
   const userId = getCookie("userId", req, res);
 
   userId;
-  let withlists = await fetch(`http://localhost:3000/api/with-list/${userId}`);
+  let withlists = await fetch(
+    `${
+      process.env.NODE_ENV != "production"
+        ? "http://localhost:3000"
+        : "https://web-last.vercel.app/"
+    }/api/with-list/${userId}`
+  );
   withlists = await withlists.json();
-  let depolists = await fetch(`http://localhost:3000/api/depo-list/${userId}`);
+  let depolists = await fetch(
+    `${
+      process.env.NODE_ENV != "production"
+        ? "http://localhost:3000"
+        : "https://web-last.vercel.app/"
+    }/api/depo-list/${userId}`
+  );
   depolists = await depolists.json();
   return {
     props: {

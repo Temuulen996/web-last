@@ -14,7 +14,13 @@ import DepoChartModal from "../components/deposit/depo-chart-modal/depo-chart-mo
 export const getServerSideProps = async (req, res) => {
   const token = getCookie("token", req, res);
   const userId = getCookie("userId", req, res);
-  let deposities = await fetch(`http://localhost:3000/api/depo-list/${userId}`);
+  let deposities = await fetch(
+    `${
+      process.env.NODE_ENV != "production"
+        ? "http://localhost:3000"
+        : "https://web-last.vercel.app/"
+    }/api/depo-list/${userId}`
+  );
   deposities = await deposities.json();
   return {
     props: {

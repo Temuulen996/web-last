@@ -13,11 +13,18 @@ export const getServerSideProps = async (req, res) => {
   let withdraws;
   const token = getCookie("token", req, res);
   const userId = getCookie("userId", req, res);
-  console.log(req.headers);
+  console.log(req);
+
   if (userId == undefined) {
     withdraws = [];
   } else {
-    withdraws = await fetch(`http://localhost:3000/api/with-list/${userId}`);
+    withdraws = await fetch(
+      `${
+        process.env.NODE_ENV != "production"
+          ? "http://localhost:3000"
+          : "https://web-last.vercel.app/"
+      }/api/with-list/${userId}`
+    );
     withdraws = await withdraws.json();
   }
   if (typeof withdraws === "object" && withdraws.length === 0) {
