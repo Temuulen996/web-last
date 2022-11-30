@@ -148,7 +148,7 @@ export default function Home({ token, userId, withdraws, req }) {
             data-bs-toggle="modal"
             data-bs-target="#exampleModalCenter"
           >
-            орлого нэмэх
+            Орлого нэмэх
           </button>
           <button
             onClick={() => {
@@ -157,7 +157,7 @@ export default function Home({ token, userId, withdraws, req }) {
             type="button"
             className="inline-block mx-2 px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
           >
-            chart харах
+            Chart харах
           </button>
         </div>
 
@@ -175,7 +175,7 @@ export default function Home({ token, userId, withdraws, req }) {
           )}
           {list.length === 0 ? (
             <div className=" mt-36 text-3xl text-center">
-              танд одоогоор орлого байхгүй байна.
+              Танд одоогоор орлого байхгүй байна.
             </div>
           ) : (
             <div></div>
