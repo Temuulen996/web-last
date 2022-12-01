@@ -4,6 +4,7 @@ const DepoModal = ({
   changeCategory,
   addDeposit,
   changeDate,
+  deposit,
 }) => {
   return (
     <div>
@@ -55,6 +56,7 @@ const DepoModal = ({
                   }}
                   placeholder="value"
                   type={"number"}
+                  value={deposit.value}
                 />
                 <input
                   className="form-control
@@ -76,12 +78,14 @@ const DepoModal = ({
                   onChange={(e) => {
                     changeDescription(e.target.value);
                   }}
+                  value={deposit.description}
                   type={"text"}
                   placeholder="description"
                 />
               </div>
               <div className="flex justify-center">
                 <input
+                  value={deposit.date}
                   onChange={(e) => {
                     changeDate(e.target.value);
                   }}
@@ -104,7 +108,7 @@ const DepoModal = ({
                   type={"date"}
                 />
                 <select
-                  value=""
+                  value={deposit.category}
                   onChange={(e) => {
                     changeCategory(e.target.value);
                   }}

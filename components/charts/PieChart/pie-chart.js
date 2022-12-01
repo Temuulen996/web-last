@@ -21,13 +21,19 @@ const PieChart = ({ userId, list }) => {
     //   .then((res) => res.json())
     //   .then((data) => {
     let daaataaa = [0, 0, 0];
+    let currentYear = new Date().getFullYear();
     list.map((el, i) => {
-      if (el.category === "цалин") {
-        daaataaa[0] = daaataaa[0] + el.value;
-      } else if (el.category === "бусад") {
-        daaataaa[2] = daaataaa[2] + el.value;
-      } else if (el.category === "нэмэлт") {
-        daaataaa[1] = daaataaa[1] + el.value;
+      let obj = new Date(el.inserted);
+      let month = obj.getMonth();
+      let year = obj.getFullYear();
+      if (year === currentYear) {
+        if (el.category === "цалин") {
+          daaataaa[0] = daaataaa[0] + el.value;
+        } else if (el.category === "бусад") {
+          daaataaa[2] = daaataaa[2] + el.value;
+        } else if (el.category === "нэмэлт") {
+          daaataaa[1] = daaataaa[1] + el.value;
+        }
       }
     });
     setMyData(daaataaa);

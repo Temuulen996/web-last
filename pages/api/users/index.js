@@ -3,7 +3,7 @@ import dbConnect from "../../../utils/dbConnection";
 
 export default async function handler(req, res) {
   const { method } = req;
-  await dbConnect();
+  dbConnect();
   if (method == "GET") {
     try {
       const users = await User.find();

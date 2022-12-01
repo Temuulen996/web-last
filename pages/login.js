@@ -24,7 +24,7 @@ const Login = () => {
     });
     isExist;
     if (isExist.data.user) {
-      ("amjilttaii");
+      console.log("amjilttaii");
       let token = await axios.post("/api/session", {
         _user: isExist.data.user._id,
       });

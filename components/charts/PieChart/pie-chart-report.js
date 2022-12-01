@@ -19,12 +19,17 @@ const PieChartReport = ({ withlists, userId, depolists }) => {
     // fetch(`/api/with-list/${userId}`)
     //   .then((res) => res.json())
     //   .then((data) => {
+    let currentYear = new Date().getFullYear();
     let daaataaa = [0, 0];
     withlists.map((el, i) => {
-      daaataaa[0] = daaataaa[0] + el.value;
+      let obj = new Date(el.inserted);
+      let year = obj.getFullYear();
+      if (year === currentYear) daaataaa[0] = daaataaa[0] + el.value;
     });
     depolists.map((el, i) => {
-      daaataaa[1] = daaataaa[1] + el.value;
+      let obj = new Date(el.inserted);
+      let year = obj.getFullYear();
+      if (year === currentYear) daaataaa[1] = daaataaa[1] + el.value;
     });
     setMyData(daaataaa);
     setLoading(false);

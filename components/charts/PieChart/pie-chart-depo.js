@@ -21,15 +21,22 @@ const PieChartDepo = ({ userId, list }) => {
     //   .then((res) => res.json())
     //   .then((data) => {
     let daaataaa = [0, 0, 0, 0];
+    let currentYear = new Date().getFullYear();
+
     list.map((el, i) => {
-      if (el.category === "хүнс") {
-        daaataaa[0] = daaataaa[0] + el.value;
-      } else if (el.category === "зээл") {
-        daaataaa[1] = daaataaa[1] + el.value;
-      } else if (el.category === "төлбөр") {
-        daaataaa[2] = daaataaa[2] + el.value;
-      } else if (el.category === "бусад") {
-        daaataaa[3] = daaataaa[3] + el.value;
+      let obj = new Date(el.inserted);
+      let month = obj.getMonth();
+      let year = obj.getFullYear();
+      if (year === currentYear) {
+        if (el.category === "хүнс") {
+          daaataaa[0] = daaataaa[0] + el.value;
+        } else if (el.category === "зээл") {
+          daaataaa[1] = daaataaa[1] + el.value;
+        } else if (el.category === "төлбөр") {
+          daaataaa[2] = daaataaa[2] + el.value;
+        } else if (el.category === "бусад") {
+          daaataaa[3] = daaataaa[3] + el.value;
+        }
       }
     });
     setMyData(daaataaa);
